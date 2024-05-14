@@ -1,0 +1,85 @@
+.project-content {
+  padding: 20px;
+}
+
+.question-dashboard {
+  padding: 20px;
+}
+
+.risk-score-content {
+  padding: 20px;
+}
+
+.qb-section-content {
+  display: flex;
+  flex-direction: row;
+  gap: 12%;
+  margin-left: 15%;
+  margin-top: 40px;
+}
+
+.qb-section-content-item {
+  background-color: white;
+  padding: 16px;
+  width: 290px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.qb-section-ctrl {
+  background-color: white;
+  padding: 16px;
+  width: 100%;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.anticon svg {
+  display: inline-block;
+  color: rgb(199, 199, 199) !important;
+}
+
+.rsc-btn Button {
+  background-color: black;
+  color: white;
+  width: 90px;
+}
+.ps-score-content {
+  padding: 20px;
+}
+
+.psc-score-card {
+  margin-top: 50px;
+  background-color: yellow;
+  width: 30%;
+  text-align: center;
+  padding: 25px;
+  margin-left: 35%;
+  border-radius: 16px;
+}
+.psc-score-card span {
+  font-size: 70px !important;
+  font-weight: 700 !important;
+}
+.psc-1l9 {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: row;
+  gap: 15%;
+  margin-left: 15%;
+}
+
+.psc-section-al {
+  display: flex;
+  flex-direction: row;
+  gap: 7%;
+}
+
+.psc-s-al-box {
+  background-color: white;
+  padding: 16px;
+  width: 100%;
+  border-radius: 12px;
+  text-align: center;
+}

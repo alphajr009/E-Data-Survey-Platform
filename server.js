@@ -7,7 +7,7 @@ require("dotenv").config();
 
 const app = express();
 
-// const userRoute = require("./routes/usersRoute");
+const userRoute = require("./routes/userRoute");
 
 const dbconfig = require("./db");
 
@@ -31,7 +31,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use(express.json());
 
-// app.use("/api/users", userRoute);
+app.use("/api/users", userRoute);
 
 const port = process.env.PORT;
 

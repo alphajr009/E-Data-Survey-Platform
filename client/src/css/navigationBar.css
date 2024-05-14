@@ -1,0 +1,73 @@
+.menuBar {
+  display: flex;
+  width: auto;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 12px 12px;
+  background: #000000;
+  font-family: "SF Pro Display-Medium" !important;
+  align-items: center;
+}
+
+.menuCon {
+  display: flex;
+  font-family: "SF Pro Display-Medium" !important;
+}
+
+:where(.css-dev-only-do-not-override-12upa3x).ant-menu {
+  font-family: "SF Pro Display-Medium" !important;
+}
+
+:where(.css-dev-only-do-not-override-12upa3x).ant-menu-horizontal {
+  border-bottom: none !important;
+}
+
+.ant-menu .ant-menu-item {
+  background-color: #000000 !important;
+}
+
+.anticon svg {
+  display: inline-block;
+  color: white;
+}
+
+.ant-menu-submenu {
+  top: 1px;
+  margin-top: -1px;
+  margin-bottom: 0;
+  border-radius: 0;
+  background-color: rgb(0 0 0);
+}
+
+:where(.css-dev-only-do-not-override-1okl62o).ant-menu-light.ant-menu-horizontal
+  > .ant-menu-item:hover,
+:where(.css-dev-only-do-not-override-1okl62o).ant-menu-light
+  > .ant-menu.ant-menu-horizontal
+  > .ant-menu-item:hover,
+:where(.css-dev-only-do-not-override-1okl62o).ant-menu-light.ant-menu-horizontal
+  > .ant-menu-submenu:hover,
+:where(.css-dev-only-do-not-override-1okl62o).ant-menu-light
+  > .ant-menu.ant-menu-horizontal
+  > .ant-menu-submenu:hover,
+:where(.css-dev-only-do-not-override-1okl62o).ant-menu-light.ant-menu-horizontal
+  > .ant-menu-item-active,
+:where(.css-dev-only-do-not-override-1okl62o).ant-menu-light
+  > .ant-menu.ant-menu-horizontal
+  > .ant-menu-item-active,
+:where(.css-dev-only-do-not-override-1okl62o).ant-menu-light.ant-menu-horizontal
+  > .ant-menu-submenu-active,
+:where(.css-dev-only-do-not-override-1okl62o).ant-menu-light
+  > .ant-menu.ant-menu-horizontal
+  > .ant-menu-submenu-active,
+:where(.css-dev-only-do-not-override-1okl62o).ant-menu-light.ant-menu-horizontal
+  > .ant-menu-item-open,
+:where(.css-dev-only-do-not-override-1okl62o).ant-menu-light
+  > .ant-menu.ant-menu-horizontal
+  > .ant-menu-item-open,
+:where(.css-dev-only-do-not-override-1okl62o).ant-menu-light.ant-menu-horizontal
+  > .ant-menu-submenu-open,
+:where(.css-dev-only-do-not-override-1okl62o).ant-menu-light
+  > .ant-menu.ant-menu-horizontal
+  > .ant-menu-submenu-open {
+  background: rgb(0 0 0);
+}
