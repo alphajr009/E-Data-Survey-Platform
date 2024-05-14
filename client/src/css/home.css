@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   padding: 16px;
+  margin-top: 3%;
 }
 
 .section1 {
@@ -107,4 +108,82 @@
   bottom: 20px;
   color: white;
   left: 38.8%;
+}
+.hc-header {
+  align-items: center;
+  text-align: center;
+}
+
+.hc-header-subtitle {
+  font-size: 26px !important;
+}
+
+.hcb-box {
+  margin-top: 60px;
+  background-color: white;
+  border-radius: 12px;
+  width: 60%;
+  margin-left: 20%;
+  padding: 18px;
+}
+
+.hcb-box h3 {
+  text-align: center;
+  font-size: 27px !important;
+}
+
+.hcb-all-topics {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.hcb-topic-box {
+  border-radius: 12px;
+  background-color: white;
+  padding: 16px;
+  width: 30%;
+  border: 1px solid rgb(204, 204, 204);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease,
+    color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hcb-topic-box.selected {
+  border-color: #2e96d6;
+  background-color: #2e96d6;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hc-question-type {
+  margin-top: 40px;
+}
+
+:where(.css-dev-only-do-not-override-1okl62o).ant-select-single:not(
+    .ant-select-customize-input
+  )
+  .ant-select-selector {
+  width: 220px;
+  height: 100%;
+  padding: 0 11px;
+}
+
+.hc-question-type .anticon svg {
+  display: inline-block;
+  color: #cccccc;
+}
+
+.go-pay-btn {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.go-pay-btn Button {
+  width: 200px !important;
+  height: 40px !important;
+  padding: 0px 20px !important;
+  font-size: 18px !important;
 }

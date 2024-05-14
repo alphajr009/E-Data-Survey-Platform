@@ -12,31 +12,17 @@ class LeftMenu extends Component {
             <b className="b-white">Home</b>
           </a>
         </Menu.Item>
-        <Menu.Item key="location">
-          <a href="/contact-us">
-            <b className="b-white">Contact Us</b>
+
+        <Menu.Item key="response">
+          <a href="/responses">
+            <b className="b-white">Responses</b>
           </a>
         </Menu.Item>
-
-        {user && (
-          <>
-            <Menu.Item key="projects">
-              <a href="/projects">
-                <b className="b-white">Projects</b>
-              </a>
-            </Menu.Item>
-            <Menu.Item key="question">
-              <a href="/questionnaire">
-                <b className="b-white">Questionnaire</b>
-              </a>
-            </Menu.Item>
-            <Menu.Item key="score">
-              <a href="/ps-score">
-                <b className="b-white">PS Score</b>
-              </a>
-            </Menu.Item>
-          </>
-        )}
+        <Menu.Item key="location">
+          <a href="/contact-us">
+            <b className="b-white">About Us</b>
+          </a>
+        </Menu.Item>
       </Menu>
     );
   }
