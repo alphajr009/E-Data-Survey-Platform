@@ -20,4 +20,16 @@ router.post("/responseSave", async (req, res) => {
   }
 });
 
+router.post("/getResponseByID", async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const responses = await Response.getByEmail(email);
+    res.status(200).json(responses);
+  } catch (error) {
+    console.error("Error getting responses by email:", error);
+    res.status(500).json({ error: "Failed to get responses by email." });
+  }
+});
+
 module.exports = router;

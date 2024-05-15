@@ -1,0 +1,14 @@
+.response-content {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  margin-top: 1%;
+}
+
+.reponse-body {
+  padding: 20px;
+}
+
+.survey-table {
+  padding: 20px;
+}

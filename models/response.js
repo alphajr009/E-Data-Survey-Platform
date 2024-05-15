@@ -35,6 +35,19 @@ class Response {
       throw error;
     }
   }
+
+  static async getByEmail(email) {
+    const query = `
+      SELECT * FROM responses WHERE email = ?
+    `;
+    try {
+      const results = await pool.query(query, [email]);
+      return results;
+    } catch (error) {
+      console.error("Error getting responses by email:", error);
+      throw error;
+    }
+  }
 }
 
 Response.createTable();

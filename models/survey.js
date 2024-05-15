@@ -74,6 +74,19 @@ class Survey {
     }
     return null;
   }
+
+  static async getByEmail(email) {
+    const query = `
+      SELECT * FROM surveys WHERE email = ?
+    `;
+    try {
+      const results = await pool.query(query, [email]);
+      return results;
+    } catch (error) {
+      console.error("Error getting responses by email:", error);
+      throw error;
+    }
+  }
 }
 
 Survey.createTable();
