@@ -1,9 +1,10 @@
-// Multiple.jsx
 import React, { useEffect, useState } from "react";
 import { Select, Button, Modal, Form, Input, Col, Radio } from "antd";
 import axios from "axios";
 import "../css/multiple.css";
 import { useParams } from "react-router-dom";
+import TextArea from "antd/es/input/TextArea";
+import Paid from "../assets/paid.png";
 
 function Multiple() {
   let params = useParams();
@@ -17,6 +18,8 @@ function Multiple() {
   const [surveyQuestions, setSurveyQuestions] = useState([]);
   const [responses, setResponses] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [paymentSuccessModalVisible, setPaymentSuccessModalVisible] =
+    useState(false);
 
   useEffect(() => {
     (async () => {
@@ -47,11 +50,16 @@ function Multiple() {
   }, [params.tokenID]);
 
   const handleSubmit = async () => {
+    const formattedResponses = responses.map((response) => ({
+      question: response.question,
+      answer: response.answer,
+    }));
+
     const payload = {
       name: name,
-      email: currentUser.email,
+      email: surveyData.email,
       token: params.tokenID,
-      qa: responses,
+      qa: formattedResponses,
     };
 
     try {
@@ -63,21 +71,35 @@ function Multiple() {
     }
   };
 
-  const handleRadioChange = (e, question) => {
+  const handleGetPaid = () => {
+    setModalVisible(false);
+    setPaymentSuccessModalVisible(true);
+  };
+
+  const handlePaidReload = () => {
+    window.location.reload();
+  };
+  const handleRadioChange = (e, questionText) => {
     const newResponses = [...responses];
-    const questionIndex = newResponses.findIndex(
-      (item) => item.question === question
+    const existingResponseIndex = newResponses.findIndex(
+      (response) => response.question === questionText
     );
-    if (questionIndex !== -1) {
-      newResponses[questionIndex].answer = e.target.value;
+
+    if (existingResponseIndex !== -1) {
+      newResponses[existingResponseIndex].answer = e.target.value;
     } else {
-      newResponses.push({ question: question, answer: e.target.value });
+      newResponses.push({ question: questionText, answer: e.target.value });
     }
+
     setResponses(newResponses);
   };
 
   const closeModal = () => {
     setModalVisible(false);
+  };
+
+  const closeModal1 = () => {
+    setPaymentSuccessModalVisible(false);
   };
 
   const [form] = Form.useForm();
@@ -162,13 +184,61 @@ function Multiple() {
         <div className="survey-footer">
           <Button onClick={handleSubmit}>Submit</Button>
         </div>
+
         <Modal
           title="Response Submitted"
           visible={modalVisible}
           onOk={closeModal}
           onCancel={closeModal}
+          footer={null}
         >
           <p>Your response has been submitted successfully.</p>
+          {surveyData && (
+            <div className="survey-get-pay">
+              <label>Number of Questions Answered </label>
+              <Input value={surveyData.number} readOnly />
+              <br />
+              <br />
+              <label>Payment Per Question </label>
+              <Input value=" $0.5" readOnly />
+              <br />
+              <br />
+              <label>Total Payment </label>
+              <Input value={`$${surveyData.number * 0.5}`} readOnly />
+              <br />
+              <br />
+              <label>Enter Your Account Number </label>
+              <TextArea />
+              <br />
+              <div className="survey-footer">
+                <Button onClick={handleGetPaid}>Get Paid</Button>
+              </div>
+            </div>
+          )}
+        </Modal>
+
+        <Modal
+          visible={paymentSuccessModalVisible}
+          onCancel={closeModal1}
+          footer={null}
+        >
+          {surveyData && (
+            <div className="header-title-mm">
+              <h6>Payment Successful</h6>
+
+              <div className="paymnet-s-img">
+                <img
+                  src={Paid}
+                  alt=""
+                  style={{ maxWidth: "100%", height: "auto" }}
+                />
+              </div>
+              <b>We successfully paid you {`$${surveyData.number * 0.5}`}</b>
+            </div>
+          )}
+          <div className="survey-footer">
+            <Button onClick={handlePaidReload}>Close</Button>
+          </div>{" "}
         </Modal>
       </div>
     </div>
