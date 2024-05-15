@@ -12,7 +12,6 @@ class LeftMenu extends Component {
             <b className="b-white">Home</b>
           </a>
         </Menu.Item>
-
         <Menu.Item key="response">
           <a href="/responses">
             <b className="b-white">Responses</b>

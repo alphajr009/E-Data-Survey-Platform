@@ -72,6 +72,8 @@ function App() {
             exact
           />
           <Route path="/survey/rating/:tokenID" element={<Rating />} exact />
+
+          <Route path="/admin/*" element={<AdminRouteGuard />} />
         </Routes>
       </BrowserRouter>
     </div>

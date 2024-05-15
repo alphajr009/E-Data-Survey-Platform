@@ -134,6 +134,18 @@ class User {
       throw error;
     }
   }
+
+  static async getAllUsers() {
+    const query =
+      "SELECT name, email, phone, gender, hometown, birthday, address FROM users";
+    try {
+      const [rows] = await pool.query(query);
+      return rows;
+    } catch (error) {
+      console.error("Error fetching all users:", error);
+      throw error;
+    }
+  }
 }
 
 User.createTable();

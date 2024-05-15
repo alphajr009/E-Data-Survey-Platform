@@ -80,7 +80,7 @@ function Account() {
       });
       console.log(res.data);
 
-      // location.reload();
+      location.reload();
     } catch (error) {
       console.log(error);
     }

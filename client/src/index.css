@@ -241,3 +241,27 @@ h2 {
 .b-white {
   color: white;
 }
+
+:where(.css-dev-only-do-not-override-1okl62o).ant-menu-light,
+:where(.css-dev-only-do-not-override-1okl62o).ant-menu-light > .ant-menu {
+  color: rgba(255, 255, 255, 0.88);
+  background: #000000 !important;
+}
+
+.nav-a a {
+  color: #ffffff !important;
+  text-decoration: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  transition: color 0.3s;
+  -webkit-text-decoration-skip: objects;
+}
+
+.admin-content {
+  padding: 20px;
+}
+
+.admin-table {
+  padding: 26px;
+}

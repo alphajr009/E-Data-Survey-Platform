@@ -55,7 +55,7 @@ const Login = () => {
       if (status === 200) {
         localStorage.setItem("currentUser", JSON.stringify(data));
         if (data.isAdmin) {
-          window.location.href = "/admin/places";
+          window.location.href = "/admin";
         } else {
           window.location.href = "/home";
         }
