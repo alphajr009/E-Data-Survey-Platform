@@ -9,7 +9,9 @@ import Multiple from "./pages/Multiple";
 import TrueFalse from "./pages/TrueFalse";
 import Rating from "./pages/Rating";
 import Response from "./pages/Response";
-import surveyDetails from "./pages/surveyDetails";
+import SurveyDetails from "./pages/SurveyDetails";
+import AboutUs from "./pages/AboutUs";
+import Account from "./pages/user/Account";
 
 const UserRouteGuard = ({ children }) => {
   const user = JSON.parse(localStorage.getItem("currentUser"));
@@ -41,12 +43,24 @@ function App() {
           <Route path="/login" element={<Login />} exact />
           <Route path="/home" element={<Home />} exact />
           <Route path="/responses" element={<Response />} exact />
+          <Route path="/about-us" element={<AboutUs />} exact />
           <Route
-            path="/surveyDetails/:tokenID"
-            element={<surveyDetails />}
+            path="/account"
+            element={
+              <UserRouteGuard>
+                <Account />
+              </UserRouteGuard>
+            }
             exact
           />
+
           <Route path="/complete/:tokenID" element={<Complete />} exact />
+          <Route
+            path="/surveydetails/:tokenID"
+            element={<SurveyDetails />}
+            exact
+          />
+
           <Route
             path="/survey/multiple/:tokenID"
             element={<Multiple />}

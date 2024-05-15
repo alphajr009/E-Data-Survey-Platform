@@ -3,12 +3,13 @@ const router = express.Router();
 const Response = require("../models/response");
 
 router.post("/responseSave", async (req, res) => {
-  const { name, email, token, qa } = req.body;
+  const { name, email, token, qa, phone } = req.body;
 
   const response = new Response();
   response.name = name;
   response.email = email;
   response.token = token;
+  response.phone = phone;
   response.qa = qa;
 
   try {
@@ -21,10 +22,10 @@ router.post("/responseSave", async (req, res) => {
 });
 
 router.post("/getResponseByID", async (req, res) => {
-  const { email } = req.body;
+  const { token } = req.body;
 
   try {
-    const responses = await Response.getByEmail(email);
+    const responses = await Response.getByToken(token);
     res.status(200).json(responses);
   } catch (error) {
     console.error("Error getting responses by email:", error);

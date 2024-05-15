@@ -37,7 +37,7 @@ function Response() {
       dataIndex: "token",
       key: "token",
       render: (text, record) => (
-        <a onClick={() => navigate(`/surveyDetails/${record.token}`)}>{text}</a>
+        <a onClick={() => navigate(`/surveydetails/${record.token}`)}>{text}</a>
       ),
     },
     {
@@ -67,7 +67,7 @@ function Response() {
         <div className="response-body">
           <b>Select Your Survey</b> <br />
           <br />
-          <Select onChange={handleChange} style={{ width: 200 }}>
+          <Select onChange={handleChange} placeholder="Select a survey">
             {responses.map((response, index) => (
               <Select.Option key={index} value={response.name}>
                 {response.name}

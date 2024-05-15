@@ -65,4 +65,68 @@ router.post(
   }
 );
 
+// GET USER BY EMAIL
+router.post(
+  "/getUserByEmail",
+  body("email").isEmail().normalizeEmail(),
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { email } = req.body;
+
+    try {
+      const user = await User.findByEmail(email);
+      if (!user) {
+        return res.status(404).send("User not found.");
+      }
+      return res.status(200).json({
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        gender: user.gender,
+        hometown: user.hometown,
+        birthday: user.birthday,
+        address: user.address,
+      });
+    } catch (error) {
+      console.error("Error retrieving user by email:", error);
+      return res.status(500).send("Failed to retrieve user.");
+    }
+  }
+);
+
+// UPDATE USER DETAILS
+router.patch(
+  "/updateUser",
+  body("email").isEmail().normalizeEmail(),
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { email, name, hometown, gender, phone, address, birthday } =
+      req.body;
+
+    try {
+      await User.updateDetails(
+        email,
+        name,
+        hometown,
+        gender,
+        phone,
+        address,
+        birthday
+      );
+      return res.status(200).send("User details updated successfully.");
+    } catch (error) {
+      console.error("Error updating user details:", error);
+      return res.status(500).send("Failed to update user details.");
+    }
+  }
+);
+
 module.exports = router;

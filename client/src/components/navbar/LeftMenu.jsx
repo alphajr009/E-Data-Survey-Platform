@@ -19,7 +19,7 @@ class LeftMenu extends Component {
           </a>
         </Menu.Item>
         <Menu.Item key="location">
-          <a href="/contact-us">
+          <a href="/about-us">
             <b className="b-white">About Us</b>
           </a>
         </Menu.Item>

@@ -1,3 +1,5 @@
+// user.js
+
 const pool = require("../db");
 const bcrypt = require("bcrypt");
 
@@ -34,8 +36,8 @@ class User {
         phone VARCHAR(20),
         gender VARCHAR(10),
         hometown VARCHAR(255),
-        birthday DATE,
-        address TEXT,
+        birthday VARCHAR(255),
+        address VARCHAR(255),
         isAdmin BOOLEAN DEFAULT FALSE
       )
     `;
@@ -107,6 +109,30 @@ class User {
       );
     }
     return null;
+  }
+
+  static async updateDetails(
+    email,
+    name,
+    hometown,
+    gender,
+    phone,
+    address,
+    birthday
+  ) {
+    const query = `
+      UPDATE users
+      SET name = ?, hometown = ?, gender = ?, phone = ?, address = ?, birthday = ?
+      WHERE email = ?
+    `;
+    const values = [name, hometown, gender, phone, address, birthday, email];
+
+    try {
+      await pool.query(query, values);
+    } catch (error) {
+      console.error("Error updating user details:", error);
+      throw error;
+    }
   }
 }
 

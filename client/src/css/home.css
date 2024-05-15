@@ -219,3 +219,19 @@
   display: inline-block;
   color: #7b7b7b !important;
 }
+
+.sd-content {
+  padding: 20px;
+}
+
+.sd-table-content {
+  padding: 16px;
+}
+
+.surveyDetails .anticon svg {
+  color: #777777 !important;
+}
+
+.Response .anticon svg {
+  color: #777777 !important;
+}

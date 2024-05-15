@@ -1,0 +1,111 @@
+.AboutUs {
+  width: 100%;
+  height: 100%;
+}
+
+.aboutus-content {
+  padding: 24px;
+  text-align: center;
+}
+
+.aboutus-section {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 24px;
+}
+
+.aboutus-box {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  margin: 0 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.aboutus-box h4 {
+  color: #1890ff;
+  margin-bottom: 12px;
+}
+
+.aboutus-box ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.aboutus-box ul li {
+  margin-bottom: 8px;
+}
+
+* {
+  font-family: "SF Pro Display-Medium" !important;
+}
+
+.acc-form-sec {
+  display: flex;
+  justify-content: center;
+  padding: 5% 10%;
+}
+.form-coloums {
+  display: flex;
+}
+:where(.css-dev-only-do-not-override-12upa3x).ant-picker {
+  padding: 0px 11px;
+  width: 100%;
+}
+
+.ant-input .css-dev-only-do-not-override-1kuana8 {
+  color: white !important;
+}
+
+:where(.css-dev-only-do-not-override-12upa3x).ant-select-multiple
+  .ant-select-selection-overflow {
+  position: relative;
+  display: flex;
+  flex: auto;
+  flex-wrap: wrap;
+  max-width: 80%;
+  padding: 4px 11px;
+}
+.user-submit-btn {
+  background-color: #0386c7;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.user-submit-btn:disabled {
+  cursor: not-allowed;
+  color: #71767b !important;
+}
+
+.user-edit-btn {
+  padding: 20px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 40px;
+  position: absolute;
+  top: 14%;
+  left: 1%;
+}
+
+:where(.css-dev-only-do-not-override-1kuana8).ant-radio-wrapper
+  .ant-radio-disabled
+  .ant-radio-inner::after {
+  background-color: #a9a9a9;
+}
+:where(.css-dev-only-do-not-override-1kuana8).ant-layout {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+}
+
+.ant-form label {
+  color: rgb(0, 0, 0);
+}
+
+.ant-form {
+  color: #000000 !important;
+}

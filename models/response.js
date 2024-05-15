@@ -8,6 +8,7 @@ class Response {
         email VARCHAR(255) NOT NULL,
         token VARCHAR(255) NOT NULL,
         name VARCHAR(255) NOT NULL,
+        phone VARCHAR(20) NOT NULL,
         qa JSON NOT NULL
       )
     `;
@@ -22,8 +23,8 @@ class Response {
 
   async save() {
     const query = `
-      INSERT INTO responses (email, token, name, qa)
-      VALUES (?, ?, ?, ?)
+      INSERT INTO responses (email, token, name, phone ,qa)
+      VALUES (?, ?, ?, ?, ?)
     `;
     const values = [this.email, this.token, this.name, JSON.stringify(this.qa)];
 
@@ -36,12 +37,12 @@ class Response {
     }
   }
 
-  static async getByEmail(email) {
+  static async getByToken(token) {
     const query = `
-      SELECT * FROM responses WHERE email = ?
+      SELECT * FROM responses WHERE token = ?
     `;
     try {
-      const results = await pool.query(query, [email]);
+      const results = await pool.query(query, [token]);
       return results;
     } catch (error) {
       console.error("Error getting responses by email:", error);

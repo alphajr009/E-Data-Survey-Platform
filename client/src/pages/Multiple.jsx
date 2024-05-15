@@ -59,6 +59,7 @@ function Multiple() {
       name: name,
       email: surveyData.email,
       token: params.tokenID,
+      phone: phone,
       qa: formattedResponses,
     };
 
