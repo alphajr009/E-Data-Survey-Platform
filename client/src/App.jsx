@@ -4,6 +4,10 @@ import Admin from "./pages/admin/Admin";
 import Home from "./pages/Home";
 import Login from "./pages/user/Login";
 import SignUp from "./pages/user/SignUp";
+import Complete from "./pages/Complete";
+import Multiple from "./pages/Multiple";
+import TrueFalse from "./pages/TrueFalse";
+import Rating from "./pages/Rating";
 
 const UserRouteGuard = ({ children }) => {
   const user = JSON.parse(localStorage.getItem("currentUser"));
@@ -34,6 +38,18 @@ function App() {
           <Route path="/signup" element={<SignUp />} exact />
           <Route path="/login" element={<Login />} exact />
           <Route path="/home" element={<Home />} exact />
+          <Route path="/complete/:tokenID" element={<Complete />} exact />
+          <Route
+            path="/survey/multiple/:tokenID"
+            element={<Multiple />}
+            exact
+          />
+          <Route
+            path="/survey/truefalse/:tokenID"
+            element={<TrueFalse />}
+            exact
+          />
+          <Route path="/survey/rating/:tokenID" element={<Rating />} exact />
         </Routes>
       </BrowserRouter>
     </div>

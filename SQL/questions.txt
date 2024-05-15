@@ -1,0 +1,118 @@
+CREATE TABLE questions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    question TEXT NOT NULL,
+    answer1 VARCHAR(255) NOT NULL,
+    answer2 VARCHAR(255) NOT NULL,
+    answer3 VARCHAR(255) NOT NULL,
+    answer4 VARCHAR(255) NOT NULL,
+    correct VARCHAR(255) NOT NULL,
+    topic VARCHAR(50) NOT NULL
+);
+
+
+INSERT INTO questions (question, answer1, answer2, answer3, answer4, correct, topic) VALUES
+('How satisfied are you with our product quality?', 'Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Satisfied', 'Customer Satisfaction'),
+('How likely are you to recommend our product to others?', 'Very Likely', 'Likely', 'Neutral', 'Unlikely', 'Very Likely', 'Customer Satisfaction'),
+('How do you rate our customer service?', 'Excellent', 'Good', 'Fair', 'Poor', 'Excellent', 'Customer Satisfaction'),
+('How satisfied are you with our delivery time?', 'Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Satisfied', 'Customer Satisfaction'),
+('How would you rate the value for money of our product?', 'Excellent', 'Good', 'Fair', 'Poor', 'Excellent', 'Customer Satisfaction'),
+('How easy was it to find what you were looking for on our website?', 'Very Easy', 'Easy', 'Neutral', 'Difficult', 'Very Easy', 'Customer Satisfaction'),
+('How likely are you to purchase from us again?', 'Very Likely', 'Likely', 'Neutral', 'Unlikely', 'Very Likely', 'Customer Satisfaction');
+
+
+INSERT INTO questions (question, answer1, answer2, answer3, answer4, correct, topic) VALUES
+('How do you rate the quality of teaching in our institution?', 'Excellent', 'Good', 'Fair', 'Poor', 'Excellent', 'Student Satisfaction'),
+('How satisfied are you with the available learning resources?', 'Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Satisfied', 'Student Satisfaction'),
+('How do you rate the support services provided by the institution?', 'Excellent', 'Good', 'Fair', 'Poor', 'Excellent', 'Student Satisfaction'),
+('How satisfied are you with the campus facilities?', 'Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Satisfied', 'Student Satisfaction'),
+('How likely are you to recommend this institution to others?', 'Very Likely', 'Likely', 'Neutral', 'Unlikely', 'Very Likely', 'Student Satisfaction'),
+('How would you rate the extracurricular activities offered?', 'Excellent', 'Good', 'Fair', 'Poor', 'Excellent', 'Student Satisfaction'),
+('How satisfied are you with the overall experience at our institution?', 'Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Satisfied', 'Student Satisfaction');
+
+
+INSERT INTO questions (question, answer1, answer2, answer3, answer4, correct, topic) VALUES
+('How satisfied are you with your current job role?', 'Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Satisfied', 'Employee Satisfaction'),
+('How do you rate the management support in your department?', 'Excellent', 'Good', 'Fair', 'Poor', 'Excellent', 'Employee Satisfaction'),
+('How satisfied are you with the work-life balance?', 'Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Satisfied', 'Employee Satisfaction'),
+('How likely are you to recommend our company as a good place to work?', 'Very Likely', 'Likely', 'Neutral', 'Unlikely', 'Very Likely', 'Employee Satisfaction'),
+('How do you rate the opportunities for professional growth?', 'Excellent', 'Good', 'Fair', 'Poor', 'Excellent', 'Employee Satisfaction'),
+('How satisfied are you with the benefits and compensation?', 'Very Satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very Satisfied', 'Employee Satisfaction'),
+('How would you rate the communication within your team?', 'Excellent', 'Good', 'Fair', 'Poor', 'Excellent', 'Employee Satisfaction');
+
+
+
+
+--true false questions
+
+CREATE TABLE trufalse (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    question TEXT NOT NULL,
+    topic VARCHAR(50) NOT NULL
+);
+
+
+INSERT INTO trufalse (question, topic) VALUES
+('Our product quality meets your expectations. True or False?', 'Customer Satisfaction'),
+('You would recommend our product to others. True or False?', 'Customer Satisfaction'),
+('Our customer service is responsive. True or False?', 'Customer Satisfaction'),
+('Your orders are delivered on time. True or False?', 'Customer Satisfaction'),
+('Our product offers good value for money. True or False?', 'Customer Satisfaction'),
+('It is easy to find information on our website. True or False?', 'Customer Satisfaction'),
+('You are likely to purchase from us again. True or False?', 'Customer Satisfaction');
+
+
+INSERT INTO trufalse (question, topic) VALUES
+('The teaching quality at our institution is excellent. True or False?', 'Student Satisfaction'),
+('Learning resources are readily available. True or False?', 'Student Satisfaction'),
+('Support services are helpful. True or False?', 'Student Satisfaction'),
+('Campus facilities meet your needs. True or False?', 'Student Satisfaction'),
+('You would recommend this institution to others. True or False?', 'Student Satisfaction'),
+('Extracurricular activities are well-organized. True or False?', 'Student Satisfaction'),
+('Your overall experience at our institution is positive. True or False?', 'Student Satisfaction');
+
+
+INSERT INTO trufalse (question, topic) VALUES
+('You are satisfied with your current job role. True or False?', 'Employee Satisfaction'),
+('Management provides adequate support. True or False?', 'Employee Satisfaction'),
+('You have a good work-life balance. True or False?', 'Employee Satisfaction'),
+('You would recommend our company as a good place to work. True or False?', 'Employee Satisfaction'),
+('There are opportunities for professional growth. True or False?', 'Employee Satisfaction'),
+('You are satisfied with the benefits and compensation. True or False?', 'Employee Satisfaction'),
+('Communication within your team is effective. True or False?', 'Employee Satisfaction');
+
+
+
+-- Create the rating table
+CREATE TABLE rating (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    question TEXT NOT NULL,
+    topic VARCHAR(50) NOT NULL
+);
+
+INSERT INTO rating (question, topic) VALUES
+('How would you rate our product quality on a scale from 1 to 5?', 'Customer Satisfaction'),
+('How would you rate the likelihood of recommending our product to others on a scale from 1 to 5?', 'Customer Satisfaction'),
+('How would you rate our customer service on a scale from 1 to 5?', 'Customer Satisfaction'),
+('How would you rate our delivery time on a scale from 1 to 5?', 'Customer Satisfaction'),
+('How would you rate the value for money of our product on a scale from 1 to 5?', 'Customer Satisfaction'),
+('How would you rate the ease of finding information on our website on a scale from 1 to 5?', 'Customer Satisfaction'),
+('How likely are you to purchase from us again on a scale from 1 to 5?', 'Customer Satisfaction');
+
+INSERT INTO rating (question, topic) VALUES
+('How would you rate the quality of teaching in our institution on a scale from 1 to 5?', 'Student Satisfaction'),
+('How would you rate the availability of learning resources on a scale from 1 to 5?', 'Student Satisfaction'),
+('How would you rate the support services provided by the institution on a scale from 1 to 5?', 'Student Satisfaction'),
+('How would you rate the campus facilities on a scale from 1 to 5?', 'Student Satisfaction'),
+('How likely are you to recommend this institution to others on a scale from 1 to 5?', 'Student Satisfaction'),
+('How would you rate the extracurricular activities offered on a scale from 1 to 5?', 'Student Satisfaction'),
+('How would you rate your overall experience at our institution on a scale from 1 to 5?', 'Student Satisfaction');
+
+
+INSERT INTO rating (question, topic) VALUES
+('How would you rate your satisfaction with your current job role on a scale from 1 to 5?', 'Employee Satisfaction'),
+('How would you rate the management support in your department on a scale from 1 to 5?', 'Employee Satisfaction'),
+('How would you rate your work-life balance on a scale from 1 to 5?', 'Employee Satisfaction'),
+('How likely are you to recommend our company as a good place to work on a scale from 1 to 5?', 'Employee Satisfaction'),
+('How would you rate the opportunities for professional growth on a scale from 1 to 5?', 'Employee Satisfaction'),
+('How would you rate the benefits and compensation on a scale from 1 to 5?', 'Employee Satisfaction'),
+('How would you rate the communication within your team on a scale from 1 to 5?', 'Employee Satisfaction');

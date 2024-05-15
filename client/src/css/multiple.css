@@ -1,0 +1,39 @@
+.survey {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.survey-content {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  width: 80%;
+  margin: auto;
+  background-color: white;
+}
+.survey-header {
+  text-align: center;
+}
+
+.survey-identity-questions span {
+  font-size: 19px !important;
+}
+
+.sq-question {
+  margin-bottom: 30px;
+}
+
+.survey-footer {
+  text-align: center !important;
+  margin: auto !important;
+}
+
+.survey-footer Button {
+  width: 40%;
+  margin-top: 25px !important;
+  background-color: #2e96d6;
+  color: white;
+}
