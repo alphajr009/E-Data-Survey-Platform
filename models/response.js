@@ -23,10 +23,16 @@ class Response {
 
   async save() {
     const query = `
-      INSERT INTO responses (email, token, name, phone ,qa)
+      INSERT INTO responses (email, token, name, phone, qa)
       VALUES (?, ?, ?, ?, ?)
     `;
-    const values = [this.email, this.token, this.name, JSON.stringify(this.qa)];
+    const values = [
+      this.email,
+      this.token,
+      this.name,
+      this.phone,
+      JSON.stringify(this.qa),
+    ];
 
     try {
       await pool.query(query, values);
