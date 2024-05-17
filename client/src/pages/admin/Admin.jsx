@@ -1,7 +1,5 @@
-// Admin.jsx
-
 import React, { useState, useEffect } from "react";
-import { Table } from "antd";
+import { Table, Button } from "antd";
 import Navbar from "../../components/navbar/MainNavbar";
 import axios from "axios";
 
@@ -19,6 +17,11 @@ function Admin() {
     } catch (error) {
       console.error("Error fetching all users:", error);
     }
+  };
+
+  const handleInspectClick = (email) => {
+    const url = `/admin/user/${email}`;
+    window.open(url, "_blank");
   };
 
   const columns = [
@@ -57,6 +60,15 @@ function Admin() {
       dataIndex: "address",
       key: "address",
     },
+    {
+      title: "Inspect",
+      key: "inspect",
+      render: (text, record) => (
+        <Button type="primary" onClick={() => handleInspectClick(record.email)}>
+          Inspect
+        </Button>
+      ),
+    },
   ];
 
   return (
@@ -65,7 +77,7 @@ function Admin() {
       <div className="admin-content">
         <h6>Registered Users</h6>
         <div className="admin-table">
-          <Table dataSource={users} columns={columns} />
+          <Table dataSource={users} columns={columns} rowKey="email" />
         </div>
       </div>
     </div>

@@ -26,11 +26,6 @@
   background-color: #000000 !important;
 }
 
-.anticon svg {
-  display: inline-block;
-  color: rgb(119, 119, 119);
-}
-
 .ant-menu-submenu {
   top: 1px;
   margin-top: -1px;

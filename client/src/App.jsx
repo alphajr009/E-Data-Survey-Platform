@@ -12,6 +12,7 @@ import Response from "./pages/Response";
 import SurveyDetails from "./pages/SurveyDetails";
 import AboutUs from "./pages/AboutUs";
 import Account from "./pages/user/Account";
+import AdminResponse from "./pages/AdminResponse";
 
 const UserRouteGuard = ({ children }) => {
   const user = JSON.parse(localStorage.getItem("currentUser"));
@@ -43,6 +44,7 @@ function App() {
           <Route path="/login" element={<Login />} exact />
           <Route path="/home" element={<Home />} exact />
           <Route path="/responses" element={<Response />} exact />
+          <Route path="//admin/user/:email" element={<AdminResponse />} exact />
           <Route path="/about-us" element={<AboutUs />} exact />
           <Route
             path="/account"
