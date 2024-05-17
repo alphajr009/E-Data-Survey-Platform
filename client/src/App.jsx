@@ -73,6 +73,22 @@ function App() {
           />
           <Route path="/survey/rating/:tokenID" element={<Rating />} exact />
 
+          <Route
+            path="/survey/multiple/:tokenID/:preview"
+            element={<Multiple />}
+            exact
+          />
+          <Route
+            path="/survey/truefalse/:tokenID/:preview"
+            element={<TrueFalse />}
+            exact
+          />
+          <Route
+            path="/survey/rating/:tokenID/:preview"
+            element={<Rating />}
+            exact
+          />
+
           <Route path="/admin/*" element={<AdminRouteGuard />} />
         </Routes>
       </BrowserRouter>

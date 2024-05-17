@@ -51,4 +51,16 @@ router.post("/getSurveyByID", async (req, res) => {
   }
 });
 
+router.post("/delete", async (req, res) => {
+  const { token } = req.body;
+
+  try {
+    await Survey.deleteByToken(token);
+    res.status(200).json({ message: "Survey deleted successfully." });
+  } catch (error) {
+    console.error("Error deleting survey:", error);
+    res.status(500).json({ error: "Failed to delete survey." });
+  }
+});
+
 module.exports = router;

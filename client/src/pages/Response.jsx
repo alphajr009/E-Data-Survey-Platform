@@ -8,23 +8,26 @@ import "../css/response.css";
 
 function Response() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  const [email, setEmail] = useState(currentUser.email);
+
   const [responses, setResponses] = useState([]);
   const [selectedResponse, setSelectedResponse] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (currentUser) {
+    if (email) {
       axios
-        .post("/api/survey/getSurveyByID", { email: currentUser.email })
+        .post("/api/survey/getSurveyByID", { email: email })
         .then((response) => {
-          const flattenedResponses = response.data[0];
+          const flattenedResponses = response.data;
           setResponses(flattenedResponses);
         })
         .catch((error) => {
           console.error("Error fetching responses:", error);
         });
     }
-  }, []);
+  }, [email]);
 
   const columns = [
     {

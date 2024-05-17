@@ -19,6 +19,8 @@ function Rating() {
   const [paymentSuccessModalVisible, setPaymentSuccessModalVisible] =
     useState(false);
 
+  const [isPreview, setIsPreview] = useState(false);
+
   useEffect(() => {
     const fetchSurveyData = async () => {
       try {
@@ -33,6 +35,12 @@ function Rating() {
 
     fetchSurveyData();
   }, [params.tokenID]);
+
+  useEffect(() => {
+    if (params.preview === "true") {
+      setIsPreview(true);
+    }
+  }, [params.preview]);
 
   useEffect(() => {
     const fetchRatingQuestions = async () => {
@@ -155,7 +163,9 @@ function Rating() {
           ))}
         </div>
         <div className="survey-footer">
-          <Button onClick={handleSubmit}>Submit</Button>
+          <Button onClick={handleSubmit} disabled={isPreview}>
+            Submit
+          </Button>{" "}
         </div>
 
         <Modal

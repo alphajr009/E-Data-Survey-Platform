@@ -80,10 +80,21 @@ class Survey {
       SELECT * FROM surveys WHERE email = ?
     `;
     try {
-      const results = await pool.query(query, [email]);
+      const [results] = await pool.query(query, [email]);
       return results;
     } catch (error) {
       console.error("Error getting responses by email:", error);
+      throw error;
+    }
+  }
+
+  static async deleteByToken(token) {
+    const query = "DELETE FROM surveys WHERE token = ?";
+    try {
+      await pool.query(query, [token]);
+      console.log("Survey deleted successfully.");
+    } catch (error) {
+      console.error("Error deleting survey:", error);
       throw error;
     }
   }

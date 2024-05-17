@@ -21,6 +21,8 @@ function Multiple() {
   const [paymentSuccessModalVisible, setPaymentSuccessModalVisible] =
     useState(false);
 
+  const [isPreview, setIsPreview] = useState(false);
+
   useEffect(() => {
     (async () => {
       try {
@@ -35,6 +37,12 @@ function Multiple() {
       }
     })();
   }, [params.tokenID]);
+
+  useEffect(() => {
+    if (params.preview === "true") {
+      setIsPreview(true);
+    }
+  }, [params.preview]);
 
   useEffect(() => {
     (async () => {
@@ -183,7 +191,9 @@ function Multiple() {
           ))}
         </div>
         <div className="survey-footer">
-          <Button onClick={handleSubmit}>Submit</Button>
+          <Button onClick={handleSubmit} disabled={isPreview}>
+            Submit
+          </Button>
         </div>
 
         <Modal

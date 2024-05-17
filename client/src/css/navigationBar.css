@@ -28,7 +28,7 @@
 
 .anticon svg {
   display: inline-block;
-  color: white;
+  color: rgb(119, 119, 119);
 }
 
 .ant-menu-submenu {

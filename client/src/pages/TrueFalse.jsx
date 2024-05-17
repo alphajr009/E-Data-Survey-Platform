@@ -20,6 +20,14 @@ function TrueFalse() {
   const [paymentSuccessModalVisible, setPaymentSuccessModalVisible] =
     useState(false);
 
+  const [isPreview, setIsPreview] = useState(false);
+
+  useEffect(() => {
+    if (params.preview === "true") {
+      setIsPreview(true);
+    }
+  }, [params.preview]);
+
   useEffect(() => {
     const fetchSurveyData = async () => {
       try {
@@ -154,7 +162,9 @@ function TrueFalse() {
           ))}
         </div>
         <div className="survey-footer">
-          <Button onClick={handleSubmit}>Submit</Button>
+          <Button onClick={handleSubmit} disabled={isPreview}>
+            Submit
+          </Button>{" "}
         </div>
 
         <Modal

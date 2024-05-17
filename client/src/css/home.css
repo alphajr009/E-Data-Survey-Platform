@@ -235,3 +235,15 @@
 .Response .anticon svg {
   color: #777777 !important;
 }
+
+.modal-btns-a {
+  display: flex;
+  gap: 50%;
+  margin-top: 30px;
+}
+
+.pay-modal-header h4 {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}

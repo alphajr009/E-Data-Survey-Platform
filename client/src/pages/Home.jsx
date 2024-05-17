@@ -3,7 +3,7 @@ import { Select, Button, Modal, Form, Input, Space, message } from "antd";
 import axios from "axios";
 import "../css/home.css";
 import Navbar from "../components/navbar/MainNavbar";
-import { CreditCardOutlined } from "@ant-design/icons";
+import { CreditCardOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 
 function Home() {
   const [selectedTopic, setSelectedTopic] = useState(null);
@@ -12,6 +12,10 @@ function Home() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [surveyName, setSurveyName] = useState("");
   const [price, setPrice] = useState(20);
+  const [token, setToken] = useState(null);
+  const [preview, setPreview] = useState("true");
+
+  const [currentSlide, setCurrentSlide] = useState(1);
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
@@ -26,23 +30,35 @@ function Home() {
     "Rating Questions",
   ];
 
-  const showModal = () => {
+  const handlePay = () => {
     setIsModalVisible(true);
+    window.location.href = `/complete/${token}`;
   };
 
   const handleOk = () => {
     setIsModalVisible(false);
   };
 
-  const handleCancel = () => {
+  const handleCancel = async () => {
+    if (token) {
+      try {
+        await axios.post("/api/survey/delete", { token });
+      } catch (error) {
+        console.error("There was an error deleting the survey!", error);
+        message.error("Failed to delete the survey.");
+      }
+    }
     setIsModalVisible(false);
+    setCurrentSlide(1);
+    window.location.reload();
   };
 
   const isFormComplete = () => {
     return selectedTopic && selectedType && selectedNumber;
   };
 
-  const handlePay = async () => {
+  const showModal = async () => {
+    setIsModalVisible(true);
     const surveyData = {
       name: surveyName,
       topic: selectedTopic,
@@ -54,11 +70,25 @@ function Home() {
     try {
       const response = await axios.post("/api/survey/create", surveyData);
       const { token } = response.data;
-
-      window.location.href = `/complete/${token}`;
+      setToken(token);
     } catch (error) {
       console.error("There was an error creating the survey!", error);
       message.error("Failed to create the survey.");
+    }
+  };
+
+  const handlePreview = () => {
+    let surveyType = "";
+    if (selectedType === "Multiple Questions") {
+      surveyType = "multiple";
+    } else if (selectedType === "True/False Questions") {
+      surveyType = "truefalse";
+    } else if (selectedType === "Rating Questions") {
+      surveyType = "rating";
+    }
+
+    if (surveyType) {
+      window.open(`/survey/${surveyType}/${token}/${preview}`, "_blank");
     }
   };
 
@@ -128,9 +158,9 @@ function Home() {
                   placeholder="Select number of questions"
                   onChange={(value) => setSelectedNumber(value)}
                 >
-                  <Select.Option value="3">3</Select.Option>
-                  <Select.Option value="4">4</Select.Option>
                   <Select.Option value="5">5</Select.Option>
+                  <Select.Option value="6">6</Select.Option>
+                  <Select.Option value="7">7</Select.Option>
                 </Select>
               </div>
 
@@ -148,40 +178,60 @@ function Home() {
         </div>
       </div>
 
-      <Modal
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        footer={null}
-      >
-        <div>
-          <h4>Payment</h4>
-
-          <span className="price-tag">Total Price: {price} USD</span>
-        </div>
-        <br />
-        <Form layout="vertical">
-          <Form.Item className="av-icon" label="Card Number">
-            <Input
-              prefix={<CreditCardOutlined />}
-              placeholder="1234 5678 9012 3456"
-            />
-          </Form.Item>
-          <Form.Item label="Expiry Date (MM/YY)">
-            <Space>
-              <Input style={{ width: "100px" }} placeholder="MM" />
-              <Input style={{ width: "100px" }} placeholder="YY" />
-            </Space>
-          </Form.Item>
-          <Form.Item label="CVV">
-            <Input style={{ width: "100px" }} placeholder="CVV" />
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" block onClick={handlePay}>
-              Pay
-            </Button>
-          </Form.Item>
-        </Form>
+      <Modal visible={isModalVisible} onCancel={handleCancel} footer={null}>
+        {currentSlide === 1 && (
+          <div className="slide">
+            <h4>Preview Survey</h4>
+            <p>Survey Name: {surveyName}</p>
+            <p>Topic: {selectedTopic}</p>
+            <p>Question Type: {selectedType}</p>
+            <p>Number of Questions: {selectedNumber}</p>
+            <div className="modal-btns-a">
+              <Button type="primary" onClick={() => handlePreview()}>
+                View Preview
+              </Button>
+              <Button type="primary" onClick={() => setCurrentSlide(2)}>
+                Go to Payment
+              </Button>
+            </div>
+          </div>
+        )}
+        {currentSlide === 2 && (
+          <div className="slide">
+            <div className="pay-modal-header">
+              <div className="back-btn-modal">
+                <ArrowLeftOutlined onClick={() => setCurrentSlide(1)} />{" "}
+              </div>
+              <div>
+                <h4>Payment</h4>
+              </div>
+            </div>
+            <span className="price-tag">Total Price: {price} USD</span>
+            <br />
+            <Form layout="vertical">
+              <Form.Item className="av-icon" label="Card Number">
+                <Input
+                  prefix={<CreditCardOutlined />}
+                  placeholder="1234 5678 9012 3456"
+                />
+              </Form.Item>
+              <Form.Item label="Expiry Date (MM/YY)">
+                <Space>
+                  <Input style={{ width: "100px" }} placeholder="MM" />
+                  <Input style={{ width: "100px" }} placeholder="YY" />
+                </Space>
+              </Form.Item>
+              <Form.Item label="CVV">
+                <Input style={{ width: "100px" }} placeholder="CVV" />
+              </Form.Item>
+              <Form.Item>
+                <Button type="primary" block onClick={handlePay}>
+                  Pay
+                </Button>
+              </Form.Item>
+            </Form>
+          </div>
+        )}
       </Modal>
     </div>
   );
