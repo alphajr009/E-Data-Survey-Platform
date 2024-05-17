@@ -247,3 +247,18 @@
   display: flex;
   flex-direction: column;
 }
+
+.excel-btn .anticon svg {
+  color: #ffffff !important;
+}
+
+.excel-btn Button {
+  background-color: #21a366;
+  color: white;
+}
+
+.excel-btn Button:hover {
+  background-color: rgb(37, 196, 122) !important;
+  color: white !important;
+  border: none !important;
+}

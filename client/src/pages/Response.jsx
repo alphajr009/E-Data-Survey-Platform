@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Select, Table } from "antd";
+import { Select, Table, Button } from "antd";
 import axios from "axios";
 import Navbar from "../components/navbar/MainNavbar";
 import { useNavigate } from "react-router-dom";
@@ -10,9 +10,9 @@ function Response() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   const [email, setEmail] = useState(currentUser.email);
-
   const [responses, setResponses] = useState([]);
   const [selectedResponse, setSelectedResponse] = useState(null);
+  const [preview, setPreview] = useState("true");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,7 +53,29 @@ function Response() {
       dataIndex: "number",
       key: "number",
     },
+    {
+      title: "Action",
+      key: "action",
+      render: (text, record) => (
+        <Button onClick={() => handlePreview(record)}>Preview</Button>
+      ),
+    },
   ];
+
+  const handlePreview = (record) => {
+    let surveyType = "";
+    if (record.type === "Multiple Questions") {
+      surveyType = "multiple";
+    } else if (record.type === "True/False Questions") {
+      surveyType = "truefalse";
+    } else if (record.type === "Rating Questions") {
+      surveyType = "rating";
+    }
+
+    if (surveyType) {
+      window.open(`/survey/${surveyType}/${record.token}/${preview}`, "_blank");
+    }
+  };
 
   const handleChange = (value) => {
     setSelectedResponse(value);

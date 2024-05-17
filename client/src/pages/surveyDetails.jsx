@@ -3,15 +3,18 @@ import { Table, Button, Modal } from "antd";
 import axios from "axios";
 import Navbar from "../components/navbar/MainNavbar";
 import { useParams } from "react-router-dom";
+import { FileExcelFilled } from "@ant-design/icons";
+import * as XLSX from "xlsx";
+
 import "../css/home.css";
 
 function SurveyDetails() {
   const params = useParams();
   const [surveyData, setSurveyData] = useState(null);
   const [responses, setResponses] = useState([]);
-  const [selectedResponse, setSelectedResponse] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [modalData, setModalData] = useState([]);
+  const [questionNames, setQuestionNames] = useState([]);
 
   useEffect(() => {
     axios
@@ -40,6 +43,14 @@ function SurveyDetails() {
     })();
   }, [params.tokenID]);
 
+  useEffect(() => {
+    if (responses.length > 0) {
+      const firstResponse = responses[0];
+      const questionTitles = firstResponse.qa.map((qa) => qa.question);
+      setQuestionNames(questionTitles);
+    }
+  }, [responses]);
+
   const columns = [
     {
       title: "Name",
@@ -51,6 +62,15 @@ function SurveyDetails() {
       dataIndex: "phone",
       key: "phone",
     },
+    // ...questionNames.map((question, index) => ({
+    //   title: question,
+    //   dataIndex: `question_${index + 1}`,
+    //   key: `question_${index + 1}`,
+    //   render: (_, record) => {
+    //     const response = record.qa.find((qa) => qa.question === question);
+    //     return response ? response.answer : "";
+    //   },
+    // })),
     {
       title: "View",
       dataIndex: "view",
@@ -69,6 +89,24 @@ function SurveyDetails() {
   const closeModal = () => {
     setModalData([]);
     setModalVisible(false);
+  };
+
+  const downloadExcel = () => {
+    const data = responses.map((response) => {
+      const rowData = {
+        Name: response.name,
+        Phone: response.phone,
+      };
+      response.qa.forEach((qa) => {
+        rowData[qa.question] = qa.answer;
+      });
+      return rowData;
+    });
+
+    const ws = XLSX.utils.json_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Responses");
+    XLSX.writeFile(wb, "survey_responses.xlsx");
   };
 
   return (
@@ -102,6 +140,13 @@ function SurveyDetails() {
             </span>{" "}
             {surveyData?.topic}
           </p>
+          <br />
+          <div className="excel-btn">
+            <Button onClick={downloadExcel}>
+              <FileExcelFilled />
+              Download Excel
+            </Button>
+          </div>
         </div>
         <br />
 
