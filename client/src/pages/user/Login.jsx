@@ -88,9 +88,9 @@ const Login = () => {
               <Col className="innter-form-section" span={12}>
                 <h1 className="text-align-left">Login</h1>
                 <p className="text-align-left">
-                  Let’s explore the world today
+                  Let’s create your survey fast
                   <br />
-                  Sign in to start managing your bookings.
+                  Sign in to start managing your surveys.
                 </p>
 
                 <Form

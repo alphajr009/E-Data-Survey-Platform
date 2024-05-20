@@ -81,7 +81,7 @@ function Complete() {
 
             <div className="pcb-amount">
               <div className="form-section">
-                <h3>Amount : 20 USD</h3>
+                <h3>Amount : £ 20</h3>
               </div>
             </div>
           </div>
@@ -93,7 +93,7 @@ function Complete() {
             <div className="url-box">
               <Input
                 type="text"
-                value={`http://localhost:3000/survey/${surveyType}/${params.tokenID}`}
+                value={`http://edatasurvey.com/survey/${surveyType}/${params.tokenID}`}
                 readOnly
               />
             </div>

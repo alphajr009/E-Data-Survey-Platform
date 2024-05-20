@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Select, Button, Modal, Form, Input, Space, message } from "antd";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "../css/home.css";
 import Navbar from "../components/navbar/MainNavbar";
 import { CreditCardOutlined, ArrowLeftOutlined } from "@ant-design/icons";
@@ -17,6 +18,7 @@ function Home() {
 
   const [currentSlide, setCurrentSlide] = useState(1);
 
+  const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   const topics = [
@@ -58,6 +60,11 @@ function Home() {
   };
 
   const showModal = async () => {
+    if (!currentUser) {
+      navigate("/login");
+      return;
+    }
+
     setIsModalVisible(true);
     const surveyData = {
       name: surveyName,
@@ -206,7 +213,7 @@ function Home() {
                 <h4>Payment</h4>
               </div>
             </div>
-            <span className="price-tag">Total Price: {price} USD</span>
+            <span className="price-tag">Total Price: £ {price} </span>
             <br />
             <Form layout="vertical">
               <Form.Item className="av-icon" label="Card Number">

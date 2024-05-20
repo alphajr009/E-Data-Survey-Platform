@@ -7,13 +7,19 @@ import "../css/home.css";
 import "../css/response.css";
 
 function Response() {
+  const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-  const [email, setEmail] = useState(currentUser.email);
+  useEffect(() => {
+    if (!currentUser) {
+      navigate("/login");
+    }
+  }, [currentUser, navigate]);
+
+  const [email, setEmail] = useState(currentUser ? currentUser.email : "");
   const [responses, setResponses] = useState([]);
   const [selectedResponse, setSelectedResponse] = useState(null);
   const [preview, setPreview] = useState("true");
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (email) {

@@ -183,11 +183,11 @@ function Rating() {
               <br />
               <br />
               <label>Payment Per Question </label>
-              <Input value=" $0.5" readOnly />
+              <Input value=" £ 0.5" readOnly />
               <br />
               <br />
               <label>Total Payment </label>
-              <Input value={`$${surveyData.number * 0.5}`} readOnly />
+              <Input value={`£ ${surveyData.number * 0.5}`} readOnly />
               <br />
               <br />
               <label>Enter Your Account Number </label>
@@ -216,7 +216,7 @@ function Rating() {
                   style={{ maxWidth: "100%", height: "auto" }}
                 />
               </div>
-              <b>We successfully paid you {`$${surveyData.number * 0.5}`}</b>
+              <b>We successfully paid you {`£ ${surveyData.number * 0.5}`}</b>
             </div>
           )}
           <div className="survey-footer">

@@ -108,9 +108,13 @@ const SignUp = () => {
         "Password must contain at least one capital letter."
       );
     }
+    if (value && !/[!@#$%^&*()]/.test(value)) {
+      return Promise.reject(
+        "Password must contain at least one special character."
+      );
+    }
     return Promise.resolve();
   };
-
   return (
     <Space
       direction="vertical"
@@ -137,9 +141,9 @@ const SignUp = () => {
               >
                 <h2 className="text-align-left">Sign up</h2>
                 <p className="text-align-left">
-                  Let’s explore the world today
+                  Let’s create your survey fast
                   <br />
-                  Sign in to start managing your bookings.
+                  Sign in to start managing your surveys.
                 </p>
 
                 <Form
